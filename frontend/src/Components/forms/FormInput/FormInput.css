@@ -1,0 +1,9 @@
+div.form-input > input{
+  background: none;
+  width: 25rem;
+  height: 5rem;
+  padding: 1rem;
+  /* margin: 1rem; */
+  border:none;
+  border-bottom: 1px solid rgb(141, 141, 141);
+}

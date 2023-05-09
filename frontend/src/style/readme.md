@@ -1,0 +1,1 @@
+**global** css style files for react and react components

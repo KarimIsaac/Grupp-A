@@ -1,0 +1,50 @@
+version: "3.9"
+services:
+  DB:
+    container_name: GruppA-DB
+    image: mysql:latest
+    environment:
+      - MYSQL_USER=${SPRING_DATASOURCE_USER}
+      - MYSQL_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+      - MYSQL_DATABASE=${SQL_SERVER_NAME}
+    restart: always
+    ports:
+      - "3306:3306"
+  keycloak_client:
+    image: quay.io/keycloak/keycloak:20.0.2
+    volumes:
+      - ./keycloak/realms/:/opt/keycloak/data/import
+      - ./keycloak/style/:/opt/keycloak/themes/myTheme
+    environment:
+      - KEYCLOAK_ADMIN=${KEYCLOAK_ADMIN_NAME}
+      - KEYCLOAK_ADMIN_PASSWORD=${KEYCLOAK_ADMIN_PASSWORD}
+    command: start-dev --import-realm&&--db=mysql --features=token-exchange&&db-url="http://localhost:3306" --db-username=${SPRING_DATASOURCE_USER} --db-password=${SPRING_DATASOURCE_PASSWORD}
+    ports:
+      - "8000:8080"
+  # WHEN IMAGE EXISTS ON GITHUB
+  spring-boot:
+    image: ghcr.io/cosmicjay2k/grupp-a-java:latest
+    environment:
+      - SPRING_DATASOURCE_URL=${SPRING_DATASOURCE_URL}
+      - SPRING_DATASOURCE_USER=${SPRING_DATASOURCE_USER}
+      - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+    ports:
+      - "8080:8080"
+    depends_on:
+      - "DB"
+    restart: always
+# WHEN RUNNING LOCAL
+# spring-boot:
+#   build:
+#     context: ./
+#     dockerfile: Dockerfile
+#   environment:
+#     - SPRING_DATASOURCE_URL=${SPRING_DATASOURCE_URL}
+#     - SPRING_DATASOURCE_USER=${SPRING_DATASOURCE_USER}
+#     - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+#   ports:
+#     - "8080:8080"
+#   depends_on:
+#     - "DB"
+#   restart: always

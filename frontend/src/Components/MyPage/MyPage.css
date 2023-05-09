@@ -1,0 +1,23 @@
+section#my-page {
+  display: flex;
+  justify-content: space-between;
+  width: 110rem;
+  height: 70rem;
+}
+
+div#my-page-body {
+  background-image: url("../../../public/OceanBackgroundMyPage.png");
+  background-repeat: no-repeat;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: inherit;
+  width: 77rem;
+}
+
+div.form-container {
+  background-color: #ECEBE4;
+  /* border-radius: 0.5rem; */
+}

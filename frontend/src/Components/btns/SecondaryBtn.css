@@ -1,0 +1,17 @@
+button.secondary-btn {
+  background-color: #092329;
+  box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.25);
+  width: 24rem;
+  height: 5rem;
+  border: none;
+
+  color: #E9E8E1;
+  text-transform: uppercase;
+  font-weight: bolder;
+  font-size: 1.8rem;
+}
+
+button.secondary-btn:hover {
+  cursor: pointer;
+  background-color: #AE4986;
+}

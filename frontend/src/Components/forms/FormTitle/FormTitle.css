@@ -1,0 +1,22 @@
+div.form-title {
+  height: 8rem;
+  position: relative;
+  display: flex;
+}
+
+div.form-title > img {
+  position: absolute;
+  top: -10%;
+  left: -7%;
+  height: 6rem;
+}
+
+div.form-title > h2 {
+  align-self: center;
+  width:25rem;
+  height: 3rem;
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: bolder;
+  text-transform: uppercase;
+}

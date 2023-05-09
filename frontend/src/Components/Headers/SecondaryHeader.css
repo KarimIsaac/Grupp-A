@@ -1,0 +1,11 @@
+
+h2.secondary-header{
+  width: 110rem;
+  padding-left: 10rem;
+  margin-bottom: 3rem;
+
+  font-size: 4rem;
+  font-weight: bolder;
+  text-transform: uppercase;
+  color:#ECEBE4;
+}

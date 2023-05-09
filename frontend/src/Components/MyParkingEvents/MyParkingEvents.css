@@ -1,0 +1,15 @@
+div#my-parking-event-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50rem;
+  width: 65rem;
+  gap: 5rem
+}
+
+div#card-container{
+  display: flex;
+  margin: 0 auto;
+  gap: 2.5rem;
+}

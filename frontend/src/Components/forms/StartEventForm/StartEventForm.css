@@ -1,0 +1,12 @@
+div#start-event-form {
+  box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.767);
+  width: 40rem;
+  height: 46rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+
+  padding: 3rem;
+}

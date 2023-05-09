@@ -1,0 +1,25 @@
+section#primary-card {
+  width: 110rem;
+  height: 60rem;
+  display: flex;
+  align-items: center;
+  position:relative;
+}
+
+section#primary-card > #white-panel{
+  background-color: #ECEBE4;
+  width: 45%;
+  height: inherit;
+}
+
+section#primary-card > #img-container{
+  width: 66%;
+}
+
+section#primary-card > #current-form-container{
+  background-color: #ECEBE4;
+  box-shadow: -10px 15px 15px rgba(0, 0, 0, 0.25);
+  position: absolute;
+  right: 10rem;
+  z-index: 2;
+}

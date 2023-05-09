@@ -1,0 +1,161 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  object-fit: contain;
+}
+
+body {
+  background: radial-gradient(
+      40.56% 40.56% at 50% 50%,
+      rgba(1, 51, 59, 0.35) 48.72%,
+      rgba(14, 18, 23, 0.35) 100%
+    ),
+    #0c151a !important;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+
+  font-size: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Header */
+
+#kc-header-wrapper {
+  display: none;
+}
+
+/* Login Card */
+
+.login-pf-page {
+  padding: 0;
+}
+
+.login-pf-page .card-pf {
+  background-color: #ecebe4;
+  background-image: url("../img/DeepOcean.png");
+  background-repeat: no-repeat;
+  background-position: left;
+
+  width: 67rem;
+  height: 35rem;
+
+  position: relative;
+  margin: auto;
+}
+
+/* Card Title */
+
+.login-pf-page .login-pf-header {
+  margin-bottom: 50px;
+}
+
+#kc-page-title {
+  color: #fff;
+  transform: translate(30rem, -6.5rem);
+}
+
+/* Form */
+
+.form-group input {
+  background: #ecebe4;
+}
+
+/* Login Form */
+
+#kc-content {
+  background: #ecebe4;
+  box-shadow: -10px 15px 15px rgba(0, 0, 0, 0.25);
+  width: 40%;
+  max-height: 97%;
+  transform: translate(35rem, -5rem);
+}
+
+#kc-form-login {
+  background-image: url("../img/SharkParkLogo.svg");
+  background-repeat: no-repeat;
+  background-position: top;
+  padding: 100px 30px 0px 30px;
+}
+
+.login-pf-page .form-group {
+  margin-bottom: 30px;
+  margin-left: 10px;
+  flex-grow: 2;
+}
+
+.form-group:nth-child(7) {
+  margin-bottom: 0px;
+  transform: translate(0, -3rem);
+}
+
+#kc-form-login > label {
+  display: none;
+}
+
+/* Register form */
+
+#kc-register-form > .form-group {
+  width: 50%;
+}
+
+#kc-register-form {
+  background-image: url("../img/SharkParkLogo.svg");
+  background-repeat: no-repeat;
+  background-position: top;
+  padding: 100px 30px 10px 30px;
+
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+#password-confirm {
+  transform: translate(0, -1.9rem);
+}
+
+.pf-c-form__label[for="password-confirm"] {
+  visibility: hidden;
+  position: relative;
+}
+
+.pf-c-form__label[for="password-confirm"]::before {
+  visibility: visible;
+  position: absolute;
+  content: "Confirm";
+}
+
+/* Login Button */
+
+#kc-login {
+  border: 1px solid lightgray;
+  padding: 22px 30px;
+  font-size: 18px;
+  color: black;
+
+  background: #ecebe4;
+  box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.25);
+}
+
+/* Register button */
+
+.pf-c-button[value="Register"] {
+  border: 1px solid lightgray;
+  padding: 22px 30px;
+  font-size: 18px;
+  color: black;
+
+  background: #ecebe4;
+  box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.25);
+}
+
+/* Registration link */
+
+#kc-registration-container {
+  transform: translate(0, -9rem);
+}

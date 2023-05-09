@@ -1,0 +1,36 @@
+div#form-component {
+  width: inherit;
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+div#form-component > .btn-container {
+  width: 25rem; 
+  height: 10rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+div#form-component > .btn-container > p{
+  width: 25rem ;
+  margin: 0.5rem 0;
+  display: flex;
+  justify-content: space-evenly;
+
+  font-size: 1.5rem;
+  font-style: italic;
+}
+
+div#form-component > .btn-container > p > i{
+  font-weight: 700;
+  font-style: normal; 
+}
+
+div#form-component > .btn-container > p > i:hover {
+  cursor: pointer;
+  color: chocolate;
+}
