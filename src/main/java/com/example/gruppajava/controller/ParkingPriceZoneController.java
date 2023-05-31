@@ -49,6 +49,11 @@ public class ParkingPriceZoneController {
         return ResponseEntity.created(location).build();
     }
 
+    @GetMapping("/parkingpricezones/active")     // filters out parking lots that are started 
+    public List<ParkingPriceZone> getAllActiveParkingPriceZones() {
+        return parkingPriceZoneRepository.findByStatus("active");
+    }
+
     // PUT PUT PUT PUT
     // update a parking price zone
     @PutMapping("/parkingpricezones/{id}")
