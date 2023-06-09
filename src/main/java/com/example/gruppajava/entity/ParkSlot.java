@@ -4,47 +4,54 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class ParkSlot {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
-  private long zone_id;
+
+  @ManyToOne(optional = false)
+  @JoinColumn(name = "price_zone_id", referencedColumnName = "id")
+  private ParkingPriceZone priceZone;
+
   private boolean available;
-  
-  public ParkSlot(){
+
+  public ParkSlot() {
   }
 
-  //ParkPriceZone zone
-  public ParkSlot(long zone_id){ 
-    this.zone_id=zone_id;
+  public ParkSlot(ParkingPriceZone priceZone) {
+    this.priceZone = priceZone;
   }
 
-  //ParkPriceZone zone
-  public ParkSlot(long zone_id,boolean available){
-    this.zone_id=zone_id;
-    this.available=available;
+  public ParkSlot(ParkingPriceZone priceZone, boolean available) {
+    this.priceZone = priceZone;
+    this.available = available;
   }
 
   public long getId() {
     return id;
   }
+
   public void setId(long id) {
     this.id = id;
   }
+
   public boolean getAvailable() {
     return available;
   }
+
   public void setAvailable(boolean available) {
     this.available = available;
   }
-  public long getZone_id() {
-    return zone_id;
+
+  public ParkingPriceZone getPriceZone() {
+    return priceZone;
   }
-  public void setZone_id(long zone_id) {
-    this.zone_id = zone_id;
+
+  public void setPriceZone(ParkingPriceZone priceZone) {
+    this.priceZone = priceZone;
   }
-  
-  
 }

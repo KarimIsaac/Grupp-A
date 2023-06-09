@@ -14,53 +14,53 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.example.gruppajava.entity.ParkSlot;
+import com.example.gruppajava.entity.ParkingPriceZone;
 import com.example.gruppajava.repository.ParkSlotRepository;
+import com.example.gruppajava.repository.ParkingPriceZoneRepository;
 
 @RestController
 public class ParkSlotController {
-  
-  private final ParkSlotRepository parkslotRepo;
 
-  public ParkSlotController(ParkSlotRepository parkslotRepo){
-    this.parkslotRepo=parkslotRepo;
+  private final ParkSlotRepository parkslotRepo;
+  private final ParkingPriceZoneRepository priceZoneRepo;
+
+  public ParkSlotController(ParkSlotRepository parkslotRepo, ParkingPriceZoneRepository priceZoneRepo) {
+    this.parkslotRepo = parkslotRepo;
+    this.priceZoneRepo = priceZoneRepo;
   }
 
   // GET GET GET GET
   // return all park slots
   @GetMapping("/api/parkslots")
-  public List<ParkSlot> getAllParkSlots(){
-  return parkslotRepo.findAll();
+  public List<ParkSlot> getAllParkSlots() {
+    return parkslotRepo.findAll();
   }
 
   // return one park slot depending on (id) parameter
   @GetMapping("/api/parkslots/{id}")
   public ParkSlot getParkSlot(@PathVariable Long id) {
-    return parkslotRepo.findById(id).get();
+    return parkslotRepo.findById(id).orElse(null);
   }
 
   // return list of park slots depending on (available) parameter /api/parkslot/?available=true or false
   @GetMapping("/api/parkslots/")
-  public List<ParkSlot> getAllConditionParkSlots(@RequestParam boolean available){
+  public List<ParkSlot> getAllConditionParkSlots(@RequestParam boolean available) {
     return parkslotRepo.findAllByAvailable(available);
   }
-  
-  // POST POST POST POST
-  record AddParkSlotReq(
-    long zone_id, //ParkPriceZone zone,
-    boolean available
-  ){}
 
-  // add a new park slot, (id) generated automatically
+  // POST POST POST POST
   @PostMapping("/api/parkslots")
-  public ResponseEntity<ParkSlot> addParkSlot(@RequestBody AddParkSlotReq req){
-    ParkSlot parkslot = new ParkSlot(
-      req.zone_id,
-      req.available
-    );
+  public ResponseEntity<ParkSlot> addParkSlot(@RequestBody AddParkSlotReq req) {
+    ParkingPriceZone priceZone = priceZoneRepo.findById(req.zone_id).orElse(null);
+    if (priceZone == null) {
+      return ResponseEntity.notFound().build();
+    }
+
+    ParkSlot parkslot = new ParkSlot(priceZone, req.available);
 
     parkslotRepo.save(parkslot);
-    
-    URI location=ServletUriComponentsBuilder
+
+    URI location = ServletUriComponentsBuilder
       .fromCurrentRequest()
       .path("/{id}")
       .buildAndExpand(parkslot.getId())
@@ -69,14 +69,21 @@ public class ParkSlotController {
   }
 
   // PATCH PATCH PATCH PATCH
-  // change the available condition of a park slot using it's (id)
-  // /api/parkslot/{id} will reverse the available boolean 
   @PatchMapping("/api/parkslots/{id}")
-  public ParkSlot modParkSlot(@PathVariable Long id) {
-    var modParkSlot = parkslotRepo.findById(id).get(); //.isPresent()? parkslotRepo.findById(id).get():null;
-    modParkSlot.setAvailable(!modParkSlot.getAvailable());
-    parkslotRepo.save(modParkSlot);
-    return modParkSlot;
+  public ResponseEntity<ParkSlot> modParkSlot(@PathVariable Long id) {
+    ParkSlot parkSlot = parkslotRepo.findById(id).orElse(null);
+    if (parkSlot == null) {
+      return ResponseEntity.notFound().build();
+    }
+
+    parkSlot.setAvailable(!parkSlot.getAvailable());
+    parkslotRepo.save(parkSlot);
+    return ResponseEntity.ok(parkSlot);
   }
 
+  record AddParkSlotReq(
+    long zone_id,
+    boolean available
+  ){}
 }
+
